@@ -16,6 +16,7 @@ class Matrix:
 
     def validate(self) -> bool:
         # Validate rectangular or square matrix
+        # TODO: Refactor to use all() instead of False in, reserved for OUR implementation, not Kenny's.
         if False in (len(row) == len(self.array[0]) for row in self.array):
             print(
                 "Error: Irregular matrix no allowed, it must be rectangular or square."
@@ -24,10 +25,6 @@ class Matrix:
         # Validate matrix values
         for row in self.array:
             for value in row:
-                # Type check
-                if not isinstance(value, int) and not isinstance(value, float):
-                    print("Error: Matrix values must be numbers.")
-                    return False
                 # Value check
                 if value < 0:
                     print("Error: Matrix values must be greater than 0")
@@ -35,6 +32,7 @@ class Matrix:
 
         return True
 
+    # Algorithm's source: https://software.clapper.org/munkres/
     def munkres(self) -> None:
         m: Munkres = Munkres()
         indexes = m.compute(self.array)
@@ -75,7 +73,7 @@ class Matrix:
                 min_indexes = indexes
 
         # Print results
-        for row, col in enumerate(indexes):
+        for row, col in enumerate(min_indexes):
             print(f"({row}, {col}) -> {self.array[row][col]}")
         print(f"Total cost: {min_cost}")
 
@@ -105,6 +103,7 @@ class Matrix:
         """
         # TODO: Alternative implementation that returns the permutations as a (agent, task) tuple list, again, reserved for OUR implementation, not Kenny's.
         # Doing it will need to change the cost calculation to use the tuples instead of building the enumeration.
+        # Doing all of that will need to change the docstring to reflect the new implementation.
         if len(agents) == 1:
             results.insert(len(results), agents)
         else:

@@ -61,7 +61,7 @@ class Matriz:
 
         # Permutaciones
         resultados = []
-        self._permutar(range(len(self.arreglo)), resultados)
+        self.permutar(range(len(self.arreglo)), resultados)
         # Calcular costo
         costo_min: float = sys.maxsize
         indices_min: list[int] = []
@@ -75,11 +75,11 @@ class Matriz:
                 indices_min = indices
 
         # Imprimir resultados
-        for fila, col in enumerate(indices):
+        for fila, col in enumerate(indices_min):
             print(f"({fila}, {col}) -> {self.arreglo[fila][col]}")
         print(f"Costo total: {costo_min}")
 
-    def _permutar(self, agentes: list[int], resultados: list[list[int]]) -> None:
+    def permutar(self, agentes: list[int], resultados: list[list[int]]) -> None:
         """Genera recursivamente todas las permutaciones de la lista dada de agentes y las almacena en la lista de resultados.
 
         Este método utiliza un enfoque recursivo para generar permutaciones. Para cada agente en la lista, elimina el agente,
@@ -110,7 +110,7 @@ class Matriz:
                 elemento = agentes[i]
                 copia_agentes = [agentes[j] for j in range(len(agentes)) if j != i]
                 subresultados = []
-                self._permutar(copia_agentes, subresultados)
+                self.permutar(copia_agentes, subresultados)
                 for subresultado in subresultados:
                     resultado = [elemento] + subresultado
                     resultados.insert(len(resultados), resultado)
@@ -154,7 +154,7 @@ def main():
     # Seleccionar algoritmo (Munkres, en casa)
     opcion: int = 0
     while True:
-        opcion = int(input("Seleccione algoritmo (1. Munkres, 2. En casa): "))
+        opcion = int(input("Seleccione algoritmo (1. Munkres, 2. Pan de jamón): "))
         # Validar opción
         if opcion not in [1, 2]:
             print("Error: Opción inválida. Por favor seleccione 1 o 2.")
