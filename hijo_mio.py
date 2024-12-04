@@ -103,8 +103,6 @@ class Matriz:
             ]
             \nDonde [0, 2, 1] significa que el agente 0 está asignado a la tarea 2, el agente 1 a la tarea 2, y el agente 2 a la tarea 1.
         """
-        # TODO: Implementación alternativa que devuelve las permutaciones como una lista de tuplas (agente, tarea), nuevamente, reservada para NUESTRA implementación, no la de Kenny.
-        # Hacerlo necesitará cambiar el cálculo de costos para usar las tuplas en lugar de construir la enumeración.
         if len(agentes) == 1:
             resultados.insert(len(resultados), agentes)
         else:
@@ -137,7 +135,6 @@ def main():
 
         matriz: Matriz = Matriz(arreglo)
 
-        # TODO: La validación se puede hacer mientras se agrega a la matriz, por lo que la matriz se recorre solo una vez, pero eso está reservado para NUESTRA implementación, no la de Kenny.
         if matriz.validar():
             break
         else:
