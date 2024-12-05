@@ -16,7 +16,6 @@ class Matrix:
 
     def validate(self) -> bool:
         # Validate rectangular or square matrix
-        # TODO: Refactor to use all() instead of False in, reserved for OUR implementation, not Kenny's.
         if False in (len(row) == len(self.array[0]) for row in self.array):
             print(
                 "Error: Irregular matrix no allowed, it must be rectangular or square."
@@ -101,9 +100,6 @@ class Matrix:
             ]
             \nWhere [0, 2, 1] means agent 0 is assigned to task 2, agent 1 to task 2, and agent 2 to task 1.
         """
-        # TODO: Alternative implementation that returns the permutations as a (agent, task) tuple list, again, reserved for OUR implementation, not Kenny's.
-        # Doing it will need to change the cost calculation to use the tuples instead of building the enumeration.
-        # Doing all of that will need to change the docstring to reflect the new implementation.
         if len(agents) == 1:
             results.insert(len(results), agents)
         else:
@@ -136,7 +132,6 @@ def main():
 
         matrix: Matrix = Matrix(array)
 
-        # TODO: Validation can be done while appending to array, so the matrix is traversed only once, but that's reserved for OUR implementation, not Kenny's.
         if matrix.validate():
             break
         else:
